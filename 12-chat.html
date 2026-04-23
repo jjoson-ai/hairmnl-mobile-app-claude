@@ -121,7 +121,7 @@
         catch { return TWEAKS; }
       });
       const [emptyKind, setEmptyKind] = React.useState("wishlist");
-      const [editOpen, setEditOpen] = React.useState(false);
+      const [editOpen, setEditOpen] = React.useState(true);
 
       React.useEffect(() => {
         document.body.setAttribute("data-palette", tw.palette);
