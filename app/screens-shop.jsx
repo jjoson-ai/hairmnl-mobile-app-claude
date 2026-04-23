@@ -374,7 +374,7 @@ function ScreenShop({ onBack, onProduct, tabVariant = "serifmark", onNav }) {
       </div>
 
       {chips.length>0 && (
-        <div style={{padding:"0 16px 12px", display:"flex", gap:6, flexWrap:"wrap"}}>
+        <div style={{padding:"4px 16px 14px", display:"flex", gap:6, flexWrap:"wrap"}}>
           {chips.map((c,i) => (
             <span key={i} className="chip chip--active" style={{gap:6}}>{c} <Icons.Close size={12}/></span>
           ))}
