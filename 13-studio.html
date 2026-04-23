@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=1440"/>
+  <title>HairMNL — Studio</title>
+  <link rel="stylesheet" href="styles/app.css"/>
+  <style>
+    body { background: #EDE6E0; }
+    .stage { min-height: 100vh; padding: 40px 24px 120px; font-family: var(--font-sans); }
+    .stage-head { max-width: 1360px; margin: 0 auto 32px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+    .stage-head h1 { font-family: var(--font-display); font-size: 44px; line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 6px; }
+    .stage-head h1 em { font-style: italic; }
+    .stage-head .eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(26,26,26,0.55); margin-bottom: 14px; }
+    .stage-head p { font-size: 13px; color: #4a4441; max-width: 520px; margin: 0; line-height: 1.55; }
+
+    .screenchrome { display: flex; gap: 48px; justify-content: center; align-items: flex-start; padding: 20px 0 40px; }
+    .devicepair { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .devicepair .dev-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(26,26,26,0.55); }
+
+    /* Nav rail (screen picker) */
+    .navrail { max-width: 1360px; margin: 0 auto 24px; display: flex; gap: 6px; flex-wrap: wrap; padding: 14px; background: #fff; border: 1px solid rgba(26,26,26,0.1); }
+    .navrail button {
+      background: none; border: 1px solid rgba(26,26,26,0.15); padding: 6px 12px;
+      font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+      cursor: pointer; color: rgba(26,26,26,0.7); display: flex; align-items: center; gap: 6px;
+    }
+    .navrail button:hover { color: var(--hm-ink); }
+    .navrail button.is-active { background: var(--hm-ink); color: var(--hm-paper); border-color: var(--hm-ink); }
+    .navrail .grp { padding: 3px 8px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.15em; color: rgba(26,26,26,0.4); align-self:center; }
+
+    /* Tweaks panel */
+    .tweaks { position: fixed; right: 24px; bottom: 24px; width: 280px; background: var(--hm-paper); border: 1px solid rgba(26,26,26,0.2); z-index: 999; display: none; box-shadow: 0 30px 60px rgba(0,0,0,0.14); }
+    .tweaks.is-open { display: block; }
+    .tweaks-head { padding: 14px 16px; border-bottom: 1px solid rgba(26,26,26,0.1); display: flex; justify-content: space-between; align-items: center; }
+    .tweaks-head .h { font-family: var(--font-display); font-size: 16px; }
+    .tweaks-head .x { cursor: pointer; font-size: 20px; background: none; border: none; }
+    .tweaks-body { padding: 8px 16px 18px; max-height: 70vh; overflow-y: auto; }
+    .tweak-row { padding: 10px 0; border-bottom: 1px solid rgba(26,26,26,0.06); }
+    .tweak-row:last-child { border-bottom: none; }
+    .tweak-row .lbl { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(26,26,26,0.55); margin-bottom: 8px; }
+    .tweak-options { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tweak-options button {
+      flex: 1; min-width: 80px; padding: 8px 10px; background: transparent;
+      border: 1px solid rgba(26,26,26,0.2); font-family: var(--font-sans);
+      font-size: 11px; letter-spacing: 0.04em; cursor: pointer; color: var(--hm-ink);
+    }
+    .tweak-options button.is-active { background: var(--hm-ink); color: var(--hm-paper); border-color: var(--hm-ink); }
+
+    /* Palette mod for stone-ground */
+    body[data-palette="stone"] .scr--blush { background: #E0E1E0 !important; }
+    body[data-palette="stone"] .scr--paper { background: #F2F2EE !important; }
+
+    /* Static canvas */
+    .canvas-rail { max-width: 1360px; margin: 40px auto; padding: 24px; background: #fff; border: 1px solid rgba(26,26,26,0.08); }
+    .canvas-rail-head { font-family: var(--font-display); font-size: 22px; margin-bottom: 16px; }
+    .canvas-rail-head em { font-style: italic; }
+    .canvas-grid { display: flex; gap: 32px; overflow-x: auto; padding: 20px 0; }
+    .canvas-cell { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .canvas-cell .cap { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(26,26,26,0.55); }
+
+    /* Scale-down wrapper for static canvas devices */
+    .mini { transform: scale(0.52); transform-origin: top center; }
+    .mini-wrap { width: 215px; height: 470px; overflow: hidden; }
+    .seg-tog { display: flex; gap: 6px; align-items: center; font-family: var(--font-mono); font-size: 10px; color: rgba(26,26,26,0.55); letter-spacing: 0.1em; text-transform: uppercase; }
+    .seg-tog button { padding: 4px 10px; border: 1px solid rgba(26,26,26,0.2); background: #fff; cursor: pointer; font-family: inherit; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .seg-tog button.is-active { background: var(--hm-ink); color: var(--hm-paper); border-color: var(--hm-ink); }
+  </style>
+</head>
+<body data-palette="blush">
+  <div id="root"></div>
+  <div id="tweaks-root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="frames/ios-frame.jsx"></script>
+  <script type="text/babel" src="frames/android-frame.jsx"></script>
+  <script type="text/babel" src="app/ui.jsx"></script>
+  <script type="text/babel" src="app/screens-entry.jsx"></script>
+  <script type="text/babel" src="app/screens-home.jsx"></script>
+  <script type="text/babel" src="app/screens-shop.jsx"></script>
+  <script type="text/babel" src="app/screens-cart.jsx"></script>
+  <script type="text/babel" src="app/screens-account.jsx"></script>
+
+  <script type="text/babel">
+    const TWEAKS = /*EDITMODE-BEGIN*/{
+      "palette": "stone",
+      "tabStyle": "serifmark",
+      "homeLayout": "editorial",
+      "onboardingVariant": "utility",
+      "pdpVariant": "imageled",
+      "signedIn": true,
+      "cartState": "loaded",
+      "screen": "studio"
+    }/*EDITMODE-END*/;
+
+    const SCREENS = [
+      { id:"splash",  label:"Splash",       grp:"Entry" },
+      { id:"onboard", label:"Onboarding",   grp:"Entry" },
+      { id:"home",    label:"Home",         grp:"Core"  },
+      { id:"search",  label:"Search",       grp:"Core"  },
+      { id:"plp",     label:"Shop / PLP",   grp:"Core"  },
+      { id:"pdp",     label:"PDP",          grp:"Core"  },
+      { id:"cart",    label:"Cart",         grp:"Purchase" },
+      { id:"checkout",label:"Checkout",     grp:"Purchase" },
+      { id:"confirm", label:"Confirmation", grp:"Purchase" },
+      { id:"me",      label:"Account",      grp:"You"   },
+      { id:"rewards", label:"Loyalty",      grp:"You"   },
+      { id:"chat",    label:"Chat",         grp:"You"   },
+      { id:"studio",  label:"Studio",       grp:"Explore" },
+      { id:"blog",    label:"Editorial",    grp:"Explore" },
+      { id:"notifs",  label:"Notifications",grp:"Explore" },
+      { id:"empty",   label:"Empty states", grp:"System" },
+    ];
+
+    function App() {
+      const [tw, setTw] = React.useState(() => {
+        try { return {...TWEAKS, ...(JSON.parse(localStorage.getItem("hm-tweaks-studio")||"{}"))}; }
+        catch { return TWEAKS; }
+      });
+      const [emptyKind, setEmptyKind] = React.useState("wishlist");
+      const [editOpen, setEditOpen] = React.useState(false);
+
+      React.useEffect(() => {
+        document.body.setAttribute("data-palette", tw.palette);
+        localStorage.setItem("hm-tweaks-studio", JSON.stringify(tw));
+      }, [tw]);
+
+      // Edit-mode protocol — listener must be registered before announce.
+      React.useEffect(() => {
+        const onMsg = (e) => {
+          if (!e.data || typeof e.data !== "object") return;
+          if (e.data.type === "__activate_edit_mode") setEditOpen(true);
+          if (e.data.type === "__deactivate_edit_mode") setEditOpen(false);
+        };
+        window.addEventListener("message", onMsg);
+        window.parent.postMessage({type:"__edit_mode_available"}, "*");
+        return () => window.removeEventListener("message", onMsg);
+      }, []);
+
+      const set = (k, v) => {
+        const next = {...tw, [k]:v};
+        setTw(next);
+        window.parent.postMessage({type:"__edit_mode_set_keys", edits:{[k]:v}}, "*");
+      };
+
+      const nav = (id) => {
+        if (id === "wishlist"||id==="orders"||id==="notifs_e") { setEmptyKind(id); set("screen","empty"); return; }
+        set("screen", id);
+      };
+
+      const renderScreen = (platform) => {
+        const common = { tabVariant: tw.tabStyle, onNav: nav };
+        switch (tw.screen) {
+          case "splash":   return <ScreenSplash onDone={()=>set("screen","onboard")}/>;
+          case "onboard":  return <ScreenOnboarding variant={tw.onboardingVariant} onDone={()=>set("screen","home")}/>;
+          case "home":     return <ScreenHome variant={tw.homeLayout} signedIn={tw.signedIn} cartCount={tw.cartState==="loaded"?2:0} {...common}/>;
+          case "search":   return <ScreenSearch onClose={()=>set("screen","home")}/>;
+          case "plp":      return <ScreenShop onBack={()=>set("screen","home")} onProduct={()=>set("screen","pdp")} {...common}/>;
+          case "pdp":      return <ScreenPDP variant={tw.pdpVariant} onBack={()=>set("screen","plp")} onATC={()=>set("screen","cart")}/>;
+          case "cart":     return <ScreenCart state={tw.cartState} onClose={()=>set("screen","home")} onCheckout={()=>set("screen","checkout")} {...common}/>;
+          case "checkout": return <ScreenCheckout onBack={()=>set("screen","cart")} onSuccess={()=>set("screen","confirm")}/>;
+          case "confirm":  return <ScreenConfirmation onDone={()=>set("screen","home")} {...common}/>;
+          case "me":       return <ScreenMe signedIn={tw.signedIn} {...common}/>;
+          case "rewards":  return <ScreenLoyalty {...common}/>;
+          case "chat":     return <ScreenChat {...common}/>;
+          case "studio":   return <ScreenStudio {...common}/>;
+          case "blog":     return <ScreenEditorial onBack={()=>set("screen","home")} {...common}/>;
+          case "notifs":   return <ScreenNotifications onBack={()=>set("screen","home")} {...common}/>;
+          case "empty":    return <ScreenEmpty kind={emptyKind} onNav={nav}/>;
+          default:         return <ScreenHome {...common} signedIn={tw.signedIn}/>;
+        }
+      };
+
+      const grouped = SCREENS.reduce((a, s) => { (a[s.grp] = a[s.grp]||[]).push(s); return a; }, {});
+      const screenLabel = (SCREENS.find(s => s.id===tw.screen)||{label:"Screen"}).label;
+
+      return (
+        <div className="stage">
+          <div className="stage-head">
+            <div>
+              <div className="eyebrow">HAIRMNL · MOBILE · STUDIO</div>
+              <h1>Studio <em>screen</em></h1>
+            </div>
+            <p>A clickable prototype for the HairMNL iOS &amp; Android app. Switch screens from the rail below; Tweaks exposes palette, layout and state variants. Tap through the core purchase path starting from Splash.</p>
+          </div>
+
+          <div className="navrail">
+            {Object.entries(grouped).map(([grp, items]) => (
+              <React.Fragment key={grp}>
+                <span className="grp">{grp}</span>
+                {items.map(s => (
+                  <button key={s.id} className={tw.screen===s.id?"is-active":""} onClick={()=>set("screen", s.id)}>
+                    {s.label}
+                  </button>
+                ))}
+              </React.Fragment>
+            ))}
+          </div>
+
+          <div className="screenchrome" data-screen-label={screenLabel}>
+            <div className="devicepair">
+              <div className="dev-label">iOS · 402 × 874 · iPhone 15 Pro</div>
+              <IOSDevice width={393} height={852} dark={false}>
+                <div style={{height:"100%", display:"flex", flexDirection:"column"}}>
+                  <div style={{height:54, flex:"0 0 auto"}}/>
+                  <div style={{flex:"1 1 auto", minHeight:0}}>{renderScreen("ios")}</div>
+                </div>
+              </IOSDevice>
+            </div>
+            <div className="devicepair">
+              <div className="dev-label">Android · 412 × 892 · Material 3</div>
+              <AndroidDevice width={412} height={892} dark={false}>
+                <div style={{height:"100%"}}>{renderScreen("android")}</div>
+              </AndroidDevice>
+            </div>
+          </div>
+
+          {tw.screen==="empty" && (
+            <div style={{maxWidth:760, margin:"0 auto 40px", padding:"14px 20px", background:"#fff", border:"1px solid rgba(26,26,26,0.1)"}}>
+              <div className="seg-tog">
+                <span>Empty variant:</span>
+                {["wishlist","orders","search","notifs","cart"].map(k => (
+                  <button key={k} className={emptyKind===k?"is-active":""} onClick={()=>setEmptyKind(k)}>{k}</button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* TWEAKS PANEL */}
+          <div className={"tweaks " + (editOpen?"is-open":"")}>
+            <div className="tweaks-head">
+              <div className="h"><em>Tweaks</em></div>
+              <button className="x" onClick={()=>setEditOpen(false)}>×</button>
+            </div>
+            <div className="tweaks-body">
+              <TweakRow label="Palette" val={tw.palette} opts={[["blush","Blush"],["stone","Stone"]]} onChange={(v)=>set("palette",v)}/>
+              <TweakRow label="Tab bar style" val={tw.tabStyle} opts={[["serifmark","Serif mark"],["dot","Terracotta dot"],["index","Mono index"]]} onChange={(v)=>set("tabStyle",v)}/>
+              <TweakRow label="Home layout" val={tw.homeLayout} opts={[["editorial","Editorial"],["shopfirst","Shop-first"],["concern","Concern-led"]]} onChange={(v)=>set("homeLayout",v)}/>
+              <TweakRow label="Onboarding" val={tw.onboardingVariant} opts={[["story","Story"],["utility","Utility"],["interactive","Interactive"]]} onChange={(v)=>set("onboardingVariant",v)}/>
+              <TweakRow label="PDP variant" val={tw.pdpVariant} opts={[["imageled","Image-led"],["editorial","Editorial"],["specdense","Spec-dense"]]} onChange={(v)=>set("pdpVariant",v)}/>
+              <TweakRow label="Signed in" val={tw.signedIn?"yes":"no"} opts={[["yes","Yes"],["no","No"]]} onChange={(v)=>set("signedIn", v==="yes")}/>
+              <TweakRow label="Cart state" val={tw.cartState} opts={[["loaded","Loaded"],["empty","Empty"]]} onChange={(v)=>set("cartState",v)}/>
+            </div>
+          </div>
+
+          {/* Floating tweak trigger (when toolbar toggle not available) */}
+          {!editOpen && (
+            <button onClick={()=>setEditOpen(true)} style={{
+              position:"fixed", right:24, bottom:24, zIndex:998,
+              padding:"12px 18px", background:"var(--hm-ink)", color:"var(--hm-paper)",
+              fontFamily:"var(--font-sans)", fontSize:11, letterSpacing:"0.18em",
+              textTransform:"uppercase", border:"none", cursor:"pointer",
+              boxShadow:"0 10px 30px rgba(0,0,0,0.15)"
+            }}>Tweaks</button>
+          )}
+        </div>
+      );
+    }
+
+    function TweakRow({ label, val, opts, onChange }) {
+      return (
+        <div className="tweak-row">
+          <div className="lbl">{label}</div>
+          <div className="tweak-options">
+            {opts.map(([v, l]) => (
+              <button key={v} className={val===v?"is-active":""} onClick={()=>onChange(v)}>{l}</button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+  </script>
+</body>
+</html>

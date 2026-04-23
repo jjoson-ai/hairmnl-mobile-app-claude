@@ -1,0 +1,281 @@
+/* ============================================================
+   HairMNL — Colors & Type
+   Design tokens derived from the 2020 Rebrand Brand Guide.
+   Import `fonts/fonts.css` before this file.
+   ============================================================ */
+
+:root {
+  /* ----- Brand palette — primary ------------------------------
+     Soft blush and warm grey define the signature "neutral
+     luxury" feel. Primary accents sit under long-form brand
+     moments (hero backgrounds, editorial pages, newsletters). */
+  --hm-blush:        #F3EBE6;   /* Pantone P 51-1 U  — primary blush */
+  --hm-stone:        #E0E1E0;   /* Pantone P 179-2 C — primary stone */
+
+  /* ----- Brand palette — secondary ---------------------------
+     Used for categorised backgrounds (by Hair Issue, by Hair
+     Type), cards, patterns, and social tiles. Always soft. */
+  --hm-sage:         #CAD1D3;   /* P 175-1 C — blue-grey sage */
+  --hm-lilac:        #E5DEE7;   /* P 88-1 U  — pale lilac */
+  --hm-sand:         #E7D8C3;   /* P 16-9 C  — warm sand */
+  --hm-sky:          #D6DEEE;   /* P 106-9 U — cool sky */
+
+  /* ----- Tertiary palette ------------------------------------
+     Used sparingly: deeper accent moments (CTA highlights,
+     illustrations, photography duotones). Always as accents;
+     never as page background without testing contrast. */
+  --hm-shell:        #EFE6E3;
+  --hm-ash:          #E4E5E6;
+  --hm-cream:        #F0E6D0;
+  --hm-peach:        #EAC4A1;
+  --hm-honey:        #CFAF8B;
+  --hm-terracotta:   #AC604F;
+  --hm-espresso:     #665A44;
+  --hm-mauve:        #E7DAEB;
+  --hm-lavender:     #B4B5D2;
+  --hm-powder:       #CCD9F0;
+  --hm-teal:         #82B4BD;
+
+  /* ----- Ink / neutrals --------------------------------------
+     The brand uses near-black (not pure black) and warm greys
+     for text, paired with off-white/blush page grounds.       */
+  --hm-ink:          #1A1A1A;   /* body/heading ink */
+  --hm-ink-soft:     #3C3A38;   /* secondary text */
+  --hm-ink-muted:    #6F6B66;   /* meta, captions */
+  --hm-ink-subtle:   #9A958F;   /* placeholder, hint */
+  --hm-rule:         #1A1A1A;   /* 1px hairline rules (at low opacity) */
+  --hm-paper:        #FAF6F2;   /* soft cream page ground */
+  --hm-paper-warm:   #F3EBE6;   /* warmer cream (same as blush) */
+  --hm-white:        #FFFFFF;
+  --hm-black:        #000000;
+
+  /* ----- Semantic colour tokens ------------------------------ */
+  --color-bg:              var(--hm-paper);
+  --color-bg-alt:          var(--hm-paper-warm);
+  --color-bg-inverse:      var(--hm-ink);
+  --color-surface:         var(--hm-white);
+  --color-surface-sunken:  var(--hm-blush);
+
+  --color-fg:              var(--hm-ink);
+  --color-fg-soft:         var(--hm-ink-soft);
+  --color-fg-muted:        var(--hm-ink-muted);
+  --color-fg-subtle:       var(--hm-ink-subtle);
+  --color-fg-inverse:      var(--hm-white);
+
+  --color-accent:          var(--hm-terracotta);  /* rare warm CTA accent */
+  --color-accent-soft:     var(--hm-peach);
+
+  --color-border:          rgba(26,26,26,0.14);
+  --color-border-strong:   rgba(26,26,26,0.45);
+  --color-hairline:        rgba(26,26,26,0.10);
+
+  --color-success:         #5F7A5B;
+  --color-warning:         var(--hm-honey);
+  --color-danger:          var(--hm-terracotta);
+
+  /* ----- Typefaces -------------------------------------------
+     Display: Self Modern — a modern didone-style serif used
+       for editorial brand voice ("Your Mane Authority").
+       The italic is used expressively inside a roman line,
+       e.g. "Your *Mane* Authority".
+     Text:    Basis Grotesque Pro — neutral grotesque for body,
+       UI, buttons and nav. All-caps with wide tracking for
+       nav labels and section indices ("01 THE REAL DEAL").
+     Mono:    Basis Grotesque Mono — used for hours, phone
+       numbers, technical labels, tiny meta.                    */
+  --font-display: 'Self Modern', 'Playfair Display', 'Cormorant Garamond', Didot, 'Bodoni MT', serif;
+  --font-sans:    'Basis Grotesque Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono:    'Basis Grotesque Mono', 'JetBrains Mono', 'IBM Plex Mono', monospace;
+
+  /* ----- Type scale (1.250 "major third") --------------------
+     Base 16px. Display scale walks up generously for editorial
+     hero moments. Line heights are tight on display, relaxed
+     on body copy. Letter-spacing goes UP for all-caps.         */
+  --fs-xs:    11px;
+  --fs-sm:    13px;
+  --fs-base:  16px;
+  --fs-md:    18px;
+  --fs-lg:    22px;
+  --fs-xl:    28px;
+  --fs-2xl:   36px;
+  --fs-3xl:   48px;
+  --fs-4xl:   64px;
+  --fs-5xl:   88px;
+  --fs-6xl:  120px;
+
+  --lh-tight:   1.04;
+  --lh-snug:    1.20;
+  --lh-body:    1.55;
+  --lh-loose:   1.75;
+
+  --tr-tight:   -0.02em;
+  --tr-normal:   0em;
+  --tr-wide:    0.08em;
+  --tr-xwide:   0.18em;
+
+  /* ----- Spacing (8pt grid) ---------------------------------- */
+  --sp-0:   0;
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+  --sp-10: 128px;
+
+  /* ----- Radii, borders, shadows -----------------------------
+     HairMNL is an editorial, near-flat brand. Buttons are
+     typically square (0) or very slightly rounded (2px).
+     Cards sit on paper without shadows; rely on hairlines.     */
+  --radius-0:  0;
+  --radius-1:  2px;
+  --radius-2:  4px;
+  --radius-pill: 999px;
+  --radius-full: 9999px;
+
+  --border-hair: 1px solid var(--color-hairline);
+  --border-rule: 1px solid var(--color-border);
+  --border-ink:  1px solid var(--hm-ink);
+
+  --shadow-0: none;
+  --shadow-1: 0 1px 2px rgba(26,26,26,0.04), 0 2px 8px rgba(26,26,26,0.04);
+  --shadow-2: 0 2px 6px rgba(26,26,26,0.06), 0 10px 30px rgba(26,26,26,0.06);
+  --shadow-3: 0 12px 40px rgba(26,26,26,0.12);
+
+  /* ----- Motion --------------------------------------------- */
+  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in:       cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:      cubic-bezier(0, 0, 0.2, 1);
+  --dur-fast:  120ms;
+  --dur-med:   220ms;
+  --dur-slow:  420ms;
+}
+
+/* ============================================================
+   Base styles
+   ============================================================ */
+
+html { color-scheme: light; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- Headings: Self Modern serif, tight leading ---------- */
+h1, h2, h3, h4, h5, h6, .h-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  color: var(--color-fg);
+  margin: 0;
+}
+
+h1 { font-size: clamp(40px, 5.5vw, var(--fs-5xl)); }
+h2 { font-size: clamp(32px, 4vw,  var(--fs-4xl)); line-height: var(--lh-snug); }
+h3 { font-size: clamp(24px, 2.6vw, var(--fs-3xl)); line-height: var(--lh-snug); }
+h4 { font-size: var(--fs-2xl); line-height: var(--lh-snug); }
+h5 { font-size: var(--fs-xl);  line-height: var(--lh-snug); }
+h6 { font-size: var(--fs-lg);  line-height: var(--lh-snug); }
+
+.h-display--xl { font-size: clamp(64px, 9vw, var(--fs-6xl)); }
+
+/* Italic inline emphasis is very on-brand: "Your Mane Authority". */
+.h-display em,
+h1 em, h2 em, h3 em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* --- Body text ------------------------------------------- */
+p, .p, .body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--color-fg-soft);
+  margin: 0 0 var(--sp-4);
+}
+
+.lead {
+  font-size: var(--fs-md);
+  line-height: 1.65;
+  color: var(--color-fg-soft);
+}
+
+small, .caption {
+  font-size: var(--fs-sm);
+  color: var(--color-fg-muted);
+  line-height: 1.5;
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+/* --- Eyebrows / nav labels / button labels ---------------
+   The all-caps grotesque label with wide tracking is the
+   secondary voice of the brand. It's used for navigation
+   ("BY HAIR ISSUE"), pillar numbers ("01 THE REAL DEAL"),
+   badges and buttons. */
+.eyebrow, .label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--tr-xwide);
+  text-transform: uppercase;
+  color: var(--color-fg);
+}
+
+.eyebrow--sm { font-size: var(--fs-xs); }
+.eyebrow--mono {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tr-wide);
+}
+
+/* --- Pillar index number (e.g. "01") --------------------- */
+.index-num {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--fs-sm);
+  letter-spacing: var(--tr-wide);
+  color: var(--color-fg-muted);
+}
+
+/* --- Links ----------------------------------------------- */
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: opacity var(--dur-fast) var(--ease-standard);
+}
+a:hover { opacity: 0.6; }
+
+.link--quiet { border-bottom-color: transparent; }
+.link--quiet:hover { border-bottom-color: currentColor; opacity: 1; }
+
+/* --- Rules ----------------------------------------------- */
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: var(--sp-6) 0;
+}
+
+/* --- Selection colour ----------------------------------- */
+::selection {
+  background: var(--hm-peach);
+  color: var(--hm-ink);
+}

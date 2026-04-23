@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>HairMNL — Mobile App Prototype</title>
+<link rel="stylesheet" href="styles/app.css"/>
+<style>
+  body { background: #EDE6E0; margin:0; font-family: var(--font-sans); color: var(--hm-ink); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 60px 32px 120px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,26,26,0.55); margin-bottom: 18px; }
+  h1 { font-family: var(--font-display); font-size: 72px; line-height: 0.98; letter-spacing:-0.02em; margin:0 0 18px; font-weight: 400; }
+  h1 em { font-style: italic; }
+  .lead { font-size: 16px; color:#4a4441; max-width: 640px; line-height: 1.55; margin: 0 0 48px; }
+  .section-head { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(26,26,26,0.55); margin: 40px 0 14px; display:flex; align-items:center; gap:10px; }
+  .section-head::after { content:""; flex:1; height:1px; background: rgba(26,26,26,0.15); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: rgba(26,26,26,0.1); border: 1px solid rgba(26,26,26,0.1); }
+  .card { background: #F8F2EC; padding: 24px; text-decoration: none; color: inherit; display: flex; flex-direction:column; justify-content:space-between; min-height: 180px; transition: background .15s; }
+  .card:hover { background: #FFF; }
+  .card .idx { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; color: rgba(26,26,26,0.5); margin-bottom: 8px; }
+  .card .ttl { font-family: var(--font-display); font-size: 28px; letter-spacing: -0.01em; line-height: 1.02; }
+  .card .ttl em { font-style: italic; }
+  .card .meta { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.15em; color: rgba(26,26,26,0.45); margin-top: 20px; text-transform: uppercase; }
+  .card .arr { font-size: 20px; margin-top: 14px; color: var(--hm-ink); }
+  .foot { margin-top: 80px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(26,26,26,0.45); display:flex; justify-content:space-between; padding-top: 20px; border-top: 1px solid rgba(26,26,26,0.15); }
+  .foot a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">HAIRMNL · NATIVE MOBILE APP · V1.0 · APRIL 2026</div>
+  <h1>Your <em>Mane</em><br/>Authority — mobile.</h1>
+  <p class="lead">A clickable prototype of the HairMNL iOS &amp; Android app, rendered side-by-side for design review. 16 screens across entry, purchase, account and editorial flows. Each page includes a Tweaks panel with palette, tab, and layout variants.</p>
+
+  
+  <div class="section-head">Entry</div>
+  <div class="grid">
+    <a class="card" href="01-splash.html">
+      <div>
+        <div class="idx">01 / 16</div>
+        <div class="ttl">Splash</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+    <a class="card" href="02-onboarding.html">
+      <div>
+        <div class="idx">02 / 16</div>
+        <div class="ttl">Onboarding</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-head">Core</div>
+  <div class="grid">
+    <a class="card" href="03-home.html">
+      <div>
+        <div class="idx">03 / 16</div>
+        <div class="ttl">Home</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+    <a class="card" href="04-search.html">
+      <div>
+        <div class="idx">04 / 16</div>
+        <div class="ttl">Search</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+    <a class="card" href="05-shop.html">
+      <div>
+        <div class="idx">05 / 16</div>
+        <div class="ttl">Shop / PLP</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+    <a class="card" href="06-pdp.html">
+      <div>
+        <div class="idx">06 / 16</div>
+        <div class="ttl">PDP</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-head">Purchase</div>
+  <div class="grid">
+    <a class="card" href="07-cart.html">
+      <div>
+        <div class="idx">07 / 16</div>
+        <div class="ttl">Cart</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+    <a class="card" href="08-checkout.html">
+      <div>
+        <div class="idx">08 / 16</div>
+        <div class="ttl">Checkout</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+    <a class="card" href="09-confirmation.html">
+      <div>
+        <div class="idx">09 / 16</div>
+        <div class="ttl">Confirmation</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-head">You</div>
+  <div class="grid">
+    <a class="card" href="10-account.html">
+      <div>
+        <div class="idx">10 / 16</div>
+        <div class="ttl">Account</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+    <a class="card" href="11-loyalty.html">
+      <div>
+        <div class="idx">11 / 16</div>
+        <div class="ttl">Loyalty</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+    <a class="card" href="12-chat.html">
+      <div>
+        <div class="idx">12 / 16</div>
+        <div class="ttl">Chat</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-head">Explore</div>
+  <div class="grid">
+    <a class="card" href="13-studio.html">
+      <div>
+        <div class="idx">13 / 16</div>
+        <div class="ttl">Studio</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+    <a class="card" href="14-editorial.html">
+      <div>
+        <div class="idx">14 / 16</div>
+        <div class="ttl">Editorial</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+    <a class="card" href="15-notifications.html">
+      <div>
+        <div class="idx">15 / 16</div>
+        <div class="ttl">Notifications</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-head">System</div>
+  <div class="grid">
+    <a class="card" href="16-empty.html">
+      <div>
+        <div class="idx">16 / 16</div>
+        <div class="ttl">Empty States</div>
+      </div>
+      <div>
+        <div class="meta">iOS · Android</div>
+        <div class="arr">→</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="foot">
+    <span>HairMNL 2026 — confidential prototype</span>
+    <span>Est. Metro Manila · Your Mane Authority</span>
+  </div>
+</div>
+</body>
+</html>
