@@ -142,7 +142,7 @@ function PDPImageLed({ onBack, onATC }) {
         {/* Cross-sell */}
         <div style={{padding:"22px 20px 8px"}}>
           <div className="t-eyebrow" style={{marginBottom:12}}>08 — PAIRS WELL WITH</div>
-          <div style={{display:"flex", gap:12, overflowX:"auto", marginLeft:-20, paddingLeft:20, paddingRight:20}}>
+          <div className="no-scrollbar" style={{display:"flex", gap:12, overflowX:"auto", marginLeft:-20, paddingLeft:20, paddingRight:20}}>
             {[{b:"OLAPLEX", n:"No. 4 Shampoo", p:1650, c:"var(--hm-peach)"}, {b:"OLAPLEX", n:"No. 5 Conditioner", p:1650, c:"var(--hm-sage)"}, {b:"K18", n:"Leave-in Mask", p:4200, c:"var(--hm-sky)"}].map((p,i) => (
               <div key={i} style={{flexShrink:0, width:130}}>
                 <TintTile color={p.c} ratio="1/1" caption={`[ ${p.b} ]`}/>
@@ -364,7 +364,7 @@ function ScreenShop({ onBack, onProduct, tabVariant = "serifmark", onNav }) {
         <button className="reset"><Icons.Search size={20}/></button>
       </div>
 
-      <div style={{padding:"0 16px 12px", display:"flex", gap:6, overflowX:"auto"}}>
+      <div className="no-scrollbar" style={{padding:"0 16px 12px", display:"flex", gap:6, overflowX:"auto"}}>
         <button className="chip" style={{gap:6}}><Icons.Filter size={14}/>Filters</button>
         {["Brand","Hair type","Price","Sulfate-free","Vegan","In-stock","Has freebie"].map((c,i) => (
           <button key={i} className="chip" style={{display:"flex", alignItems:"center", gap:4}}>

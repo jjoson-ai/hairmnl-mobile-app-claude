@@ -59,7 +59,7 @@ function LoyaltyCard({ pts = 6840, tier = "GOLD", next = 10000, inline }) {
 function PaymentStrip() {
   const items = ["GCash", "Maya", "GrabPay", "BillEase", "COD", "BDO", "BPI"];
   return (
-    <div style={{padding:"14px 20px", display:"flex", gap:8, overflowX:"auto", borderTop:"1px solid var(--hm-hairline)", borderBottom:"1px solid var(--hm-hairline)", background:"var(--hm-paper)"}}>
+    <div className="no-scrollbar" style={{padding:"14px 20px", display:"flex", gap:8, overflowX:"auto", borderTop:"1px solid var(--hm-hairline)", borderBottom:"1px solid var(--hm-hairline)", background:"var(--hm-paper)"}}>
       <span className="t-eyebrow" style={{alignSelf:"center", flexShrink:0}}>Pays:</span>
       {items.map((p,i) => (
         <span key={i} className="chip chip--mono" style={{background:"var(--hm-paper)", fontSize:9, padding:"5px 10px", minHeight:24}}>{p}</span>
@@ -124,7 +124,7 @@ function HomeEditorial({ signedIn, onNav, tabVariant }) {
         {/* Your Routine */}
         {signedIn && (<>
           <SectionIndex num="01" title="YOUR ROUTINE" trailing={<span className="t-eyebrow" style={{color:"var(--hm-ink-muted)"}}>4 STEPS</span>}/>
-          <div style={{display:"flex", gap:12, padding:"0 20px 24px", overflowX:"auto"}}>
+          <div className="no-scrollbar" style={{display:"flex", gap:12, padding:"0 20px 24px", overflowX:"auto"}}>
             {[
               {brand:"KÉRASTASE", name:"Bain Hydra-Fondant", step:"Cleanse", color:"var(--hm-sky)", pts:128},
               {brand:"OLAPLEX", name:"No. 3 Hair Perfector", step:"Treat · every 2 wk", color:"var(--hm-sand)", pts:94},
@@ -146,7 +146,7 @@ function HomeEditorial({ signedIn, onNav, tabVariant }) {
 
         {/* Shop by Concern */}
         <SectionIndex num="02" title="SHOP BY CONCERN"/>
-        <div style={{padding:"0 20px", display:"flex", gap:10, overflowX:"auto"}}>
+        <div className="no-scrollbar" style={{padding:"0 20px", display:"flex", gap:10, overflowX:"auto"}}>
           {concerns.map((c,i) => (
             <button key={i} className="reset" onClick={()=>onNav("plp")} style={{flexShrink:0, width:88, textAlign:"center"}}>
               <img src={c.img} style={{width:88, height:88, borderRadius:"50%"}}/>
